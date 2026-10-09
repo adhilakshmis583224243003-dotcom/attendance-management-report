@@ -1,0 +1,26 @@
+Student_ID,Name,Department,Subject,Total_Classes,Classes_Attended,Consecutive_Absences,Parent_Name,Parent_Email,Parent_Phone
+STU101,Aarav Sharma,Computer Science,Data Structures,45,42,0,Rajesh Sharma,rajesh.sharma@example.com,+91 98765 43210
+STU102,Ananya Iyer,Computer Science,Data Structures,45,31,4,Venkatesh Iyer,v.iyer@example.com,+91 98765 43211
+STU103,Rohan Verma,Information Tech,Computer Networks,48,34,3,Sunil Verma,sunil.v@example.com,+91 98765 43212
+STU104,Pooja Patel,Computer Science,Database Systems,44,41,0,Kishore Patel,k.patel@example.com,+91 98765 43213
+STU105,Vikram Singh,Information Tech,Algorithms,46,28,5,Mahesh Singh,m.singh@example.com,+91 98765 43214
+STU106,Sneha Kulkarni,Computer Science,Operating Systems,45,37,1,Prakash Kulkarni,p.kulkarni@example.com,+91 98765 43215
+STU107,Devendra Rao,Electronics,Microprocessors,42,26,4,Srinivas Rao,s.rao@example.com,+91 98765 43216
+STU108,Meera Nambiar,Computer Science,Machine Learning,45,44,0,Unni Nambiar,u.nambiar@example.com,+91 98765 43217
+STU109,Karthik Nair,Electronics,Digital Signal Processing,40,29,2,Gopinath Nair,g.nair@example.com,+91 98765 43218
+STU110,Priyanka Das,Information Tech,Cloud Computing,45,35,1,Subhash Das,s.das@example.com,+91 98765 43219
+STU111,Rahul Mehta,Computer Science,Data Structures,45,27,6,Anil Mehta,anil.mehta@example.com,+91 98765 43220
+STU112,Divya Pillai,Information Tech,Database Systems,44,38,0,Radhakrishnan Pillai,r.pillai@example.com,+91 98765 43221
+STU113,Kabir Joshi,Computer Science,Algorithms,46,33,2,Deepak Joshi,d.joshi@example.com,+91 98765 43222
+STU114,Isha Reddy,Electronics,Embedded Systems,42,40,0,Satyanarayana Reddy,s.reddy@example.com,+91 98765 43223
+STU115,Arjun Kapoor,Computer Science,Computer Networks,48,32,4,Ramesh Kapoor,r.kapoor@example.com,+91 98765 43224
+STU116,Tanvi Bhatt,Information Tech,Software Engineering,45,43,0,Nitin Bhatt,n.bhatt@example.com,+91 98765 43225
+STU117,Gautam Sen,Computer Science,Machine Learning,45,30,3,Alok Sen,alok.sen@example.com,+91 98765 43226
+STU118,Riya Chawla,Electronics,VLSI Design,40,36,0,Jagdish Chawla,j.chawla@example.com,+91 98765 43227
+STU119,Aditya Menon,Information Tech,Cybersecurity,44,29,4,Kishore Menon,k.menon@example.com,+91 98765 43228
+STU120,Neha Gupta,Computer Science,Database Systems,44,42,0,Sanjay Gupta,s.gupta@example.com,+91 98765 43229
+STU121,Varun Saxena,Electronics,Microprocessors,42,31,2,Ashok Saxena,a.saxena@example.com,+91 98765 43230
+STU122,Simran Kaur,Information Tech,Cloud Computing,45,41,0,Gurpreet Kaur,g.kaur@example.com,+91 98765 43231
+STU123,Harsh Vardhan,Computer Science,Algorithms,46,31,3,Harish Vardhan,h.vardhan@example.com,+91 98765 43232
+STU124,Trisha Roy,Computer Science,Operating Systems,45,45,0,Tapan Roy,t.roy@example.com,+91 98765 43233
+STU125,Manish Pandey,Electronics,Communication Systems,42,28,5,Dinesh Pandey,d.pandey@example.com,+91 98765 43234

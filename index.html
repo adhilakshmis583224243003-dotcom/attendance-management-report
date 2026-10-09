@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Attendance Monitoring Agent - Frameworkless Autonomous Attendance Analysis, Risk Identification, Alert Dispatch, and Comprehensive Academic Reporting.">
+  <title>Attendance Monitoring Agent | Autonomous Academic Oversight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+  <div class="app-container">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav" role="banner">
+      <div class="nav-left">
+        <div class="brand-logo">
+          <div class="logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              <circle cx="12" cy="12" r="4"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>Attendance Monitoring Agent</h1>
+            <span class="sub-badge">Frameworkless Autonomous Engine</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-center">
+        <div class="agent-status-pill" id="agentStatusPill">
+          <span class="pulse-dot"></span>
+          <span class="status-label">Agent Engine:</span>
+          <strong class="status-val" id="agentEngineStatus">Active & Monitoring</strong>
+          <span class="status-divider">|</span>
+          <span class="threshold-chip" id="activeThresholdDisplay">Critical &lt; 75%</span>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <button id="btnConfigure" class="btn btn-outline btn-sm" title="Configure Thresholds & Settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Settings
+        </button>
+        <button id="btnThemeToggle" class="btn btn-icon btn-sm" aria-label="Toggle Dark and Light theme" title="Toggle Theme">
+          <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button id="btnRunAgent" class="btn btn-primary btn-sm">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <span>Run Analysis</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="main-body" role="main">
+      <!-- Agent Intelligence Summary Bar -->
+      <section class="agent-insights-banner" id="agentInsightBanner">
+        <div class="insight-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="insight-content">
+          <div class="insight-header">
+            <span class="insight-tag">Agent Diagnostic Report</span>
+            <span class="insight-time" id="lastAnalysisTimestamp">Analysis up-to-date</span>
+          </div>
+          <p class="insight-text" id="agentDiagnosticText">
+            The Agent scanned the attendance registry. <strong>6 students</strong> have fallen below the mandatory 75% threshold and are currently at risk of exam debarment. <strong>4 students</strong> have chronic consecutive unexcused absences. Immediate parent alerts recommended.
+          </p>
+        </div>
+        <div class="insight-actions">
+          <button id="btnQuickAlerts" class="btn btn-warning btn-sm">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            Review Alerts
+          </button>
+          <button id="btnQuickExport" class="btn btn-outline btn-sm">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Report
+          </button>
+        </div>
+      </section>
+
+      <!-- Key Performance Indicators (KPI Cards) -->
+      <section class="kpi-grid">
+        <div class="kpi-card" id="cardTotalStudents">
+          <div class="kpi-header">
+            <span class="kpi-title">Total Enrolled</span>
+            <div class="kpi-icon-wrap bg-blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+          </div>
+          <div class="kpi-value-row">
+            <span class="kpi-value" id="kpiTotalStudents">25</span>
+            <span class="kpi-badge badge-neutral">Students Tracked</span>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-sub">Across 3 Departments & 10 Subjects</span>
+          </div>
+        </div>
+
+        <div class="kpi-card" id="cardAvgAttendance">
+          <div class="kpi-header">
+            <span class="kpi-title">Average Attendance</span>
+            <div class="kpi-icon-wrap bg-indigo">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+          </div>
+          <div class="kpi-value-row">
+            <span class="kpi-value" id="kpiAvgAttendance">78.4%</span>
+            <span class="kpi-badge" id="kpiAvgBadge">Target: 75%</span>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar" id="kpiAvgBar" style="width: 78.4%;"></div>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-sub" id="kpiAttendanceHealth">Safe overall margin (+3.4%)</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-critical" id="cardCriticalRisk">
+          <div class="kpi-header">
+            <span class="kpi-title">Critical Risk (&lt; 75%)</span>
+            <div class="kpi-icon-wrap bg-red">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+          </div>
+          <div class="kpi-value-row">
+            <span class="kpi-value color-danger" id="kpiCriticalCount">6</span>
+            <span class="kpi-badge badge-danger">High Risk</span>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-sub color-danger">Facing Exam Debarment Penalty</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-warning" id="cardWarningRisk">
+          <div class="kpi-header">
+            <span class="kpi-title">Warning (75% - 80%)</span>
+            <div class="kpi-icon-wrap bg-amber">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+          </div>
+          <div class="kpi-value-row">
+            <span class="kpi-value color-warning" id="kpiWarningCount">4</span>
+            <span class="kpi-badge badge-warning">Borderline</span>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-sub color-warning">Early Intervention Required</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-success" id="cardSafeStudents">
+          <div class="kpi-header">
+            <span class="kpi-title">Safe / Good (&gt; 80%)</span>
+            <div class="kpi-icon-wrap bg-emerald">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+          </div>
+          <div class="kpi-value-row">
+            <span class="kpi-value color-success" id="kpiSafeCount">15</span>
+            <span class="kpi-badge badge-success">Good Standing</span>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-sub color-success">Eligible for Semester Examination</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation Tabs & Action Toolbar -->
+      <section class="section-toolbar">
+        <div class="tabs-nav" role="tablist">
+          <button class="tab-btn active" role="tab" aria-selected="true" data-tab="tab-roster" id="tabBtnRoster">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Student Risk Matrix
+          </button>
+          <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-alerts" id="tabBtnAlerts">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            Alerts Dispatch Center
+            <span class="tab-counter-pill" id="alertsCounterBadge">6</span>
+          </button>
+          <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-analytics" id="tabBtnAnalytics">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            Subject & Dept Analytics
+          </button>
+          <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-reports" id="tabBtnReports">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Executive Reports
+          </button>
+        </div>
+
+        <div class="toolbar-actions">
+          <button id="btnUploadCsvModal" class="btn btn-outline btn-sm">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Import CSV
+          </button>
+          <button id="btnAddStudentModal" class="btn btn-secondary btn-sm">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Student
+          </button>
+          <button id="btnExportAllReports" class="btn btn-primary btn-sm">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export All
+          </button>
+        </div>
+      </section>
+
+      <!-- TAB 1: STUDENT RISK MATRIX & ROSTER -->
+      <section class="tab-content-panel active" id="tab-roster">
+        <div class="panel-card">
+          <!-- Filter & Search Controls -->
+          <div class="table-controls-bar">
+            <div class="search-box-wrap">
+              <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="searchInput" placeholder="Search by Student Name, ID, or Subject..." autocomplete="off">
+              <button id="btnClearSearch" class="btn-clear-search" style="display:none;" title="Clear search">&times;</button>
+            </div>
+
+            <div class="filter-pills-group">
+              <button class="filter-pill active" data-filter="all">All (<span id="countAll">25</span>)</button>
+              <button class="filter-pill pill-danger" data-filter="critical">Critical &lt; 75% (<span id="countCritical">6</span>)</button>
+              <button class="filter-pill pill-warning" data-filter="warning">Warning 75-80% (<span id="countWarning">4</span>)</button>
+              <button class="filter-pill pill-success" data-filter="safe">Safe &gt; 80% (<span id="countSafe">15</span>)</button>
+              <button class="filter-pill pill-streak" data-filter="chronic">Chronic Absences 3+ (<span id="countChronic">7</span>)</button>
+            </div>
+
+            <div class="dept-select-wrap">
+              <select id="filterDeptSelect" aria-label="Filter by Department">
+                <option value="all">All Departments</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Information Tech">Information Tech</option>
+                <option value="Electronics">Electronics</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Student Table -->
+          <div class="table-responsive">
+            <table class="data-table" id="studentTable">
+              <thead>
+                <tr>
+                  <th class="th-sortable" data-sort="id">Student ID</th>
+                  <th class="th-sortable" data-sort="name">Student Name</th>
+                  <th class="th-sortable" data-sort="dept">Department & Subject</th>
+                  <th class="th-sortable text-center" data-sort="attendance">Classes (Att/Tot)</th>
+                  <th class="th-sortable text-center" data-sort="percentage">Percentage</th>
+                  <th class="th-sortable text-center" data-sort="risk">Risk Status</th>
+                  <th class="text-center">Action Required / Recovery Goal</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="studentTableBody">
+                <!-- Dynamically Rendered by app.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Table Footer Pagination / Status -->
+          <div class="table-footer">
+            <div class="footer-left">
+              <span>Showing <strong id="showingCount">25</strong> of <strong id="totalCount">25</strong> students</span>
+            </div>
+            <div class="footer-right">
+              <button id="btnBulkAlert" class="btn btn-warning btn-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                Generate Alerts for At-Risk Students
+              </button>
+              <button id="btnExportFilteredCsv" class="btn btn-outline btn-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Export Table (CSV)
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: ALERTS & COMMUNICATION CENTER -->
+      <section class="tab-content-panel" id="tab-alerts">
+        <div class="alerts-layout">
+          <!-- Alert Channel Selector & Controls -->
+          <div class="panel-card alert-sidebar">
+            <div class="sidebar-header">
+              <h3>Alert Templates & Channels</h3>
+              <p class="text-muted">Agent auto-populates official templates for immediate dispatch.</p>
+            </div>
+
+            <div class="template-selector-list">
+              <label class="template-radio-item active" data-template="email">
+                <input type="radio" name="alertTemplate" value="email" checked>
+                <div class="radio-content">
+                  <div class="radio-title-row">
+                    <span class="channel-badge channel-email">Formal Email</span>
+                    <span class="sub-info">Institutional</span>
+                  </div>
+                  <p class="template-desc">Official Academic Warning Notice with Dean signature & examination debarment notice.</p>
+                </div>
+              </label>
+
+              <label class="template-radio-item" data-template="sms">
+                <input type="radio" name="alertTemplate" value="sms">
+                <div class="radio-content">
+                  <div class="radio-title-row">
+                    <span class="channel-badge channel-sms">Parent SMS / WhatsApp</span>
+                    <span class="sub-info">High Urgency</span>
+                  </div>
+                  <p class="template-desc">Concise parent notification with current shortfall and mandatory callback requirement.</p>
+                </div>
+              </label>
+
+              <label class="template-radio-item" data-template="counselor">
+                <input type="radio" name="alertTemplate" value="counselor">
+                <div class="radio-content">
+                  <div class="radio-title-row">
+                    <span class="channel-badge channel-counselor">Advisor Memo</span>
+                    <span class="sub-info">Internal</span>
+                  </div>
+                  <p class="template-desc">Academic Counselor intervention dossier with attendance recovery roadmap.</p>
+                </div>
+              </label>
+            </div>
+
+            <div class="alert-config-box">
+              <h4>Filter Target Recipients</h4>
+              <div class="form-group">
+                <label for="alertTargetFilter">Audience Scope:</label>
+                <select id="alertTargetFilter" class="form-control">
+                  <option value="critical">Critical Risk Only (&lt; 75%)</option>
+                  <option value="all-risk">All At-Risk Students (&lt; 80%)</option>
+                  <option value="chronic">Students with 3+ Consecutive Absences</option>
+                  <option value="all">All Enrolled Students</option>
+                </select>
+              </div>
+
+              <div class="bulk-alert-actions">
+                <button id="btnDispatchAllAlerts" class="btn btn-warning btn-block">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  Simulate Batch Dispatch
+                </button>
+                <button id="btnDownloadAllAlertsTxt" class="btn btn-outline btn-block">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Download All Alerts (.txt)
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alert Cards Feed & Live Previews -->
+          <div class="panel-card alert-feed-area">
+            <div class="feed-header">
+              <div>
+                <h3>Generated Alert Notices (<span id="alertNoticesCount">6</span>)</h3>
+                <p class="text-muted" id="alertNoticeSubtitle">Personalized notices synthesized by the Attendance Monitoring Agent.</p>
+              </div>
+              <div class="feed-header-actions">
+                <button id="btnCopyActiveAlerts" class="btn btn-outline btn-sm">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  Copy All Visible
+                </button>
+              </div>
+            </div>
+
+            <!-- List of Rendered Alert Cards -->
+            <div class="alerts-feed-list" id="alertsFeedList">
+              <!-- Dynamically populated by app.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: SUBJECT & DEPT ANALYTICS -->
+      <section class="tab-content-panel" id="tab-analytics">
+        <div class="analytics-grid">
+          <div class="panel-card">
+            <div class="card-title-row">
+              <h3>Department-Level Attendance Breakdown</h3>
+              <span class="badge-neutral">Audit Summary</span>
+            </div>
+            <p class="text-muted mb-4">Comparison of attendance compliance across academic divisions.</p>
+            <div class="dept-stats-list" id="deptAnalyticsContainer">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="card-title-row">
+              <h3>Subject Risk Index</h3>
+              <span class="badge-warning">Vulnerability Analysis</span>
+            </div>
+            <p class="text-muted mb-4">Subjects experiencing highest unexcused absenteeism rates.</p>
+            <div class="subject-stats-list" id="subjectAnalyticsContainer">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-card mt-4">
+          <div class="card-title-row">
+            <h3>Attendance Health Distribution Matrix</h3>
+            <span class="badge-neutral">Cohort Proportions</span>
+          </div>
+          <div class="cohort-distribution-bar-wrap">
+            <div class="cohort-bar cohort-bar-danger" id="cohortBarCritical" style="width: 24%;" title="Critical (<75%)">24% Critical</div>
+            <div class="cohort-bar cohort-bar-warning" id="cohortBarWarning" style="width: 16%;" title="Warning (75-80%)">16% Warning</div>
+            <div class="cohort-bar cohort-bar-success" id="cohortBarSafe" style="width: 60%;" title="Safe (>80%)">60% Safe</div>
+          </div>
+          <div class="cohort-legend">
+            <div class="legend-item"><span class="legend-color bg-red"></span> Critical &lt; 75% (<span id="legCrit">6</span>)</div>
+            <div class="legend-item"><span class="legend-color bg-amber"></span> Warning 75-80% (<span id="legWarn">4</span>)</div>
+            <div class="legend-item"><span class="legend-color bg-emerald"></span> Safe &gt; 80% (<span id="legSafe">15</span>)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: EXECUTIVE REPORTS -->
+      <section class="tab-content-panel" id="tab-reports">
+        <div class="panel-card printable-report-card" id="printableReportCard">
+          <div class="report-official-header">
+            <div class="inst-info">
+              <span class="inst-eyebrow">OFFICE OF ACADEMIC AFFAIRS & REGISTRAR</span>
+              <h2>Comprehensive Attendance Audit & Risk Advisory</h2>
+              <p class="report-meta">Generated by <strong>Autonomous Attendance Monitoring Agent</strong> &bull; Date: <span id="reportGenDate">October 9, 2026</span></p>
+            </div>
+            <div class="report-badge-box">
+              <span class="stamp-badge">OFFICIAL AUDIT</span>
+            </div>
+          </div>
+
+          <div class="report-summary-stats-box">
+            <div class="rep-stat-col">
+              <span class="rep-label">Total Student Cohort</span>
+              <strong class="rep-num" id="repStatTotal">25</strong>
+            </div>
+            <div class="rep-stat-col">
+              <span class="rep-label">Institutional Mean</span>
+              <strong class="rep-num" id="repStatMean">78.4%</strong>
+            </div>
+            <div class="rep-stat-col">
+              <span class="rep-label">Mandatory Threshold</span>
+              <strong class="rep-num">75.0%</strong>
+            </div>
+            <div class="rep-stat-col">
+              <span class="rep-label">Debarred Candidates</span>
+              <strong class="rep-num color-danger" id="repStatDebarred">6</strong>
+            </div>
+            <div class="rep-stat-col">
+              <span class="rep-label">Compliance Ratio</span>
+              <strong class="rep-num color-success" id="repStatCompliance">76.0%</strong>
+            </div>
+          </div>
+
+          <div class="report-section-block">
+            <h3>1. Executive Risk Diagnosis & Recommendations</h3>
+            <p id="reportNarrativeText">
+              The autonomous attendance evaluation engine conducted a compliance audit across 25 enrolled students. 6 candidates are currently failing statutory attendance requirements with less than 75% aggregate participation. Immediate parental conference notices and academic warning letters have been staged for dispatch.
+            </p>
+          </div>
+
+          <div class="report-section-block">
+            <h3>2. Priority Action Roster (Debarment Risk &lt; 75%)</h3>
+            <div class="table-responsive">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Roll Number</th>
+                    <th>Student Name</th>
+                    <th>Department</th>
+                    <th>Attended / Total</th>
+                    <th>Percentage</th>
+                    <th>Target Shortfall</th>
+                    <th>Classes Needed for 75%</th>
+                  </tr>
+                </thead>
+                <tbody id="reportAtRiskTableBody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="report-actions-bar no-print">
+            <button id="btnPrintReport" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Print / Save as PDF
+            </button>
+            <button id="btnExportReportCsv" class="btn btn-outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export Report Data (CSV)
+            </button>
+            <button id="btnExportReportJson" class="btn btn-outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              Export JSON Dataset
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="app-footer no-print">
+      <div class="footer-content">
+        <p><strong>Attendance Monitoring Agent</strong> &bull; Zero Framework Bloat (Pure Vanilla JS & CSS) &bull; Built for High-Performance Academic Administration.</p>
+        <div class="footer-links">
+          <button id="btnFooterResetDemo" class="text-link">Reload Demo Data</button>
+          <span>&bull;</span>
+          <button id="btnFooterDownloadCsv" class="text-link">Download Sample CSV</button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- MODAL: CSV IMPORT -->
+  <div class="modal-backdrop" id="modalCsvUpload" style="display:none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Import Custom Attendance CSV</h3>
+        <button class="btn-close-modal" id="btnCloseCsvModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted mb-3">Upload your CSV file. The agent will auto-detect columns for Student ID, Name, Department, Classes Held, and Classes Attended.</p>
+        
+        <div class="drop-zone" id="dropZone">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <p>Drag and drop your attendance CSV file here, or <label for="csvFileInput" class="browse-link">browse from PC</label></p>
+          <input type="file" id="csvFileInput" accept=".csv" style="display:none;">
+          <span class="file-name-preview" id="selectedFileName"></span>
+        </div>
+
+        <div class="format-help-box">
+          <strong>Expected CSV Headers:</strong>
+          <code>Student_ID, Name, Department, Subject, Total_Classes, Classes_Attended, Consecutive_Absences, Parent_Name, Parent_Email, Parent_Phone</code>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="btnDownloadTemplateCsv">Download Template CSV</button>
+        <button class="btn btn-primary" id="btnProcessCsvFile" disabled>Process & Run Agent</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD STUDENT -->
+  <div class="modal-backdrop" id="modalAddStudent" style="display:none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Enroll New Student into Agent Registry</h3>
+        <button class="btn-close-modal" id="btnCloseAddStudentModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="addStudentForm">
+          <div class="form-row">
+            <div class="form-group col-6">
+              <label for="newStuId">Student Roll / ID *</label>
+              <input type="text" id="newStuId" class="form-control" placeholder="e.g. STU126" required>
+            </div>
+            <div class="form-group col-6">
+              <label for="newStuName">Full Name *</label>
+              <input type="text" id="newStuName" class="form-control" placeholder="e.g. Sarah Jenkins" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-6">
+              <label for="newStuDept">Department *</label>
+              <select id="newStuDept" class="form-control" required>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Information Tech">Information Tech</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Mechanical Eng">Mechanical Eng</option>
+              </select>
+            </div>
+            <div class="form-group col-6">
+              <label for="newStuSubject">Subject *</label>
+              <input type="text" id="newStuSubject" class="form-control" placeholder="e.g. Distributed Systems" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-4">
+              <label for="newStuTotal">Total Classes *</label>
+              <input type="number" id="newStuTotal" class="form-control" min="1" max="200" value="45" required>
+            </div>
+            <div class="form-group col-4">
+              <label for="newStuAttended">Classes Attended *</label>
+              <input type="number" id="newStuAttended" class="form-control" min="0" max="200" value="38" required>
+            </div>
+            <div class="form-group col-4">
+              <label for="newStuConsecutive">Recent Absences</label>
+              <input type="number" id="newStuConsecutive" class="form-control" min="0" max="50" value="0">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-4">
+              <label for="newStuParentName">Parent Name</label>
+              <input type="text" id="newStuParentName" class="form-control" placeholder="Guardian Name">
+            </div>
+            <div class="form-group col-4">
+              <label for="newStuParentEmail">Parent Email</label>
+              <input type="email" id="newStuParentEmail" class="form-control" placeholder="parent@example.com">
+            </div>
+            <div class="form-group col-4">
+              <label for="newStuParentPhone">Parent Phone</label>
+              <input type="tel" id="newStuParentPhone" class="form-control" placeholder="+91 98765 00000">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="btnCancelAddStudent">Cancel</button>
+        <button class="btn btn-primary" id="btnSaveNewStudent">Save & Analyze</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CONFIGURE THRESHOLDS -->
+  <div class="modal-backdrop" id="modalConfig" style="display:none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Agent Rules & Policy Thresholds</h3>
+        <button class="btn-close-modal" id="btnCloseConfigModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted mb-4">Customize the agent's risk classification rules. The metrics and student risk status will re-evaluate in real time.</p>
+        
+        <div class="threshold-slider-group">
+          <div class="slider-label-row">
+            <label for="criticalThresholdSlider">Critical Debarment Threshold (&lt; %):</label>
+            <span class="slider-badge badge-danger" id="criticalValDisplay">75%</span>
+          </div>
+          <input type="range" id="criticalThresholdSlider" min="50" max="85" value="75" class="range-slider">
+          <span class="help-text">Students with attendance strictly below this threshold receive mandatory debarment warning letters.</span>
+        </div>
+
+        <div class="threshold-slider-group mt-4">
+          <div class="slider-label-row">
+            <label for="warningThresholdSlider">Warning / Borderline Threshold (&lt; %):</label>
+            <span class="slider-badge badge-warning" id="warningValDisplay">80%</span>
+          </div>
+          <input type="range" id="warningThresholdSlider" min="70" max="95" value="80" class="range-slider">
+          <span class="help-text">Students falling between Critical and this limit receive proactive early intervention notices.</span>
+        </div>
+
+        <div class="form-group mt-4">
+          <label for="chronicDaysInput">Chronic Consecutive Absences Trigger (Days):</label>
+          <input type="number" id="chronicDaysInput" class="form-control" min="1" max="10" value="3">
+          <span class="help-text">Flags an urgent alert if an enrolled student misses this many consecutive sessions.</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="btnResetDefaultThresholds">Reset Defaults (75% / 80%)</button>
+        <button class="btn btn-primary" id="btnSaveConfig">Apply & Recalculate</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL / DRAWER: STUDENT DRILL-DOWN & RECOVERY ROADMAP -->
+  <div class="modal-backdrop" id="modalStudentDetail" style="display:none;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <div class="student-header-title">
+          <h3 id="detailStudentName">Aarav Sharma</h3>
+          <span class="badge-neutral" id="detailStudentId">STU101</span>
+        </div>
+        <button class="btn-close-modal" id="btnCloseStudentDetail">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="student-detail-summary-grid">
+          <div class="detail-kpi">
+            <span class="kpi-sub">Department</span>
+            <strong id="detailDept">Computer Science</strong>
+          </div>
+          <div class="detail-kpi">
+            <span class="kpi-sub">Subject</span>
+            <strong id="detailSubject">Data Structures</strong>
+          </div>
+          <div class="detail-kpi">
+            <span class="kpi-sub">Attendance Ratio</span>
+            <strong id="detailRatio">42 / 45 Classes</strong>
+          </div>
+          <div class="detail-kpi">
+            <span class="kpi-sub">Percentage</span>
+            <strong id="detailPct" class="color-success">93.3%</strong>
+          </div>
+        </div>
+
+        <!-- Recovery Roadmap Engine -->
+        <div class="recovery-box mt-4" id="recoveryBox">
+          <div class="recovery-header">
+            <h4>Agent Attendance Recovery Roadmap</h4>
+            <span class="badge-danger" id="detailRiskBadge">Critical Risk</span>
+          </div>
+          <div class="recovery-body" id="recoveryPlanText">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Quick Attendance Simulator -->
+        <div class="simulator-box mt-4">
+          <h4>Interactive Attendance Action Simulator</h4>
+          <p class="text-muted mb-3">Test what happens if this student attends or misses the next class session.</p>
+          <div class="sim-actions-row">
+            <button class="btn btn-success btn-sm" id="btnSimulateAttend">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Mark Next Class: Attended (+1)
+            </button>
+            <button class="btn btn-danger btn-sm" id="btnSimulateAbsent">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              Mark Next Class: Absent (+1)
+            </button>
+            <button class="btn btn-outline btn-sm" id="btnResetStudentSim">
+              Reset to Base
+            </button>
+          </div>
+        </div>
+
+        <!-- Contact & Alert Trigger -->
+        <div class="contact-card mt-4">
+          <h4>Guardian & Contact Details</h4>
+          <div class="contact-details-row">
+            <div><strong>Guardian:</strong> <span id="detailParentName">Rajesh Sharma</span></div>
+            <div><strong>Email:</strong> <span id="detailParentEmail">rajesh@example.com</span></div>
+            <div><strong>Phone:</strong> <span id="detailParentPhone">+91 98765 43210</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning" id="btnTriggerStudentAlert">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          Open Alert Composer for This Student
+        </button>
+        <button class="btn btn-outline" id="btnCloseDetailFooter">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
